@@ -1,0 +1,18 @@
+name: Trigger Workflow
+
+on:
+  push:
+    branches: 
+      - main  # Change this to your default branch if not 'main'
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Repository Dispatch
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.TARGET_REPOSITORY_PAT }}  # Needs a Personal Access Token (PAT)
+        repository: asifarshadullah/test-target-repository  # The repository to trigger
+        event-type: trigger-workflow  # Event type
