@@ -28,16 +28,17 @@ jobs:
 
   publish-results:
     needs: test  # make sure this job runs after the 'test' job
-    runs-on: ubuntu-latest  # this action works best on Linux runners
+    runs-on: ubuntu-latest
     steps:
       - name: Download test results
         uses: actions/download-artifact@v2
         with:
           name: junit-results
+          path: ./junit-results  # explicitly define the path for clarity
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()  # this ensures that the results are published even if no XML files are found
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          files: junit-results/*.xml
+          files: ./junit-results/*.xml
