@@ -26,6 +26,21 @@ jobs:
           name: junit-results
           path: D:/Development/Work/Projects/AmbergRMS/l3-automationtest-amberg-engr/junit-results/*.xml
 
+      - name: Upload Allure Results
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: allure-results
+          path: D:/Development/Work/Projects/AmbergRMS/l3-automationtest-amberg-engr/allure-results/
+    
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: allure-report
+          path: D:/Development/Work/Projects/AmbergRMS/l3-automationtest-amberg-engr/allure-report/
+        
+
   publish-results:
     needs: test  # make sure this job runs after the 'test' job
     runs-on: ubuntu-latest
@@ -42,3 +57,17 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           files: ./junit-results/*.xml
+
+      - name: Download Allure Report
+        uses: actions/download-artifact@v2
+        with:
+          name: allure-report
+          path: ./allure-report
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+        
+        
