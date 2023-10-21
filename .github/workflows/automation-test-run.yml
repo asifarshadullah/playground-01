@@ -13,5 +13,5 @@ jobs:
       - name: Setup and run tests
         run: |
           cd D:/Development/Work/Projects/AmbergRMS/l3-automationtest-amberg-engr
-          npm install
+          npm install --verbose
           npm run login
