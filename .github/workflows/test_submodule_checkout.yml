@@ -1,7 +1,9 @@
 name: Test Submodule Checkout
 
 on:
-  workflow_dispatch: 
+    push:
+      branches: 
+        - task/execute_another_repo
 
 jobs:
   checkout-test:
