@@ -1,0 +1,11 @@
+name: Dev Branch Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dev_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show Dev Branch Message
+        run: echo "Running workflow from the DEV branch."

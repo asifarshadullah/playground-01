@@ -1,0 +1,11 @@
+name: Main Branch Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  main_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show Main Branch Message
+        run: echo "Running workflow from the MAIN branch."
